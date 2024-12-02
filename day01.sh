@@ -1,3 +1,5 @@
+#!/bin/bash
+
 powershell.exe Get-Clipboard | awk '{print $1}' | sort > new.txt
 powershell.exe Get-Clipboard | awk '{print $2}' | sort > new2.txt
 paste -d ' ' new.txt new2.txt > new3.txt
