@@ -19,10 +19,8 @@ powershell.exe Get-Clipboard
     | sed 's/)//' 
     | awk '
         BEGIN { doing = 1 } 
-        { 
-            if ($0 == "do(") doing = 1; 
-            if ($0 == "don'\''t(") doing = 0; i
-            f (doing && NF > 1) sum += ($1 * $2)
-        } 
+        /do\(/ { doing = 1 }
+        /don.*/ { doing = 0 }
+        { sum += ($1 * $2) * doing } 
         END { print sum }
     ' 
